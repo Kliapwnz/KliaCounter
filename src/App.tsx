@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   let [counter, setCounter] = useState(0)
+   let [disabled, setDisabled] = useState(false)
+
+   const onOnePlusHandler = () => {
+      setCounter(counter + 1)
+      if (counter === 4) {
+         setDisabled(!disabled)
+      } else setDisabled(false)
+   }
+   // const onFivePlusHandler = () => {
+   //    setCounter(counter + 5)
+   // }
+   const onClearHandler = () => {
+      setCounter(counter = 0)
+      setDisabled(false)
+   }
+
+   return (
+      <div className="App">
+         <input type="number" value={counter} className={counter === 5 ? "inputA" : "input"}/>
+         <div>
+            <button onClick={onOnePlusHandler} className="button" disabled={disabled}>+</button>
+            {/*<button onClick={onFivePlusHandler} className="button">+5</button>*/}
+            <button onClick={onClearHandler} className="button" disabled={!disabled}>clear</button>
+
+         </div>
+      </div>
+   );
 }
 
 export default App;
